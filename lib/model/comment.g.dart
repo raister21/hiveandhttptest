@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'commentAdapter.dart';
+part of 'comment.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -8,7 +8,7 @@ part of 'commentAdapter.dart';
 
 class CommentAdapter extends TypeAdapter<Comment> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Comment read(BinaryReader reader) {

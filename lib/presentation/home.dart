@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Comment> data = [];
   HttpClient client = HttpClient();
-  final commentsBox = Hive.box('myComments');
+  final commentsBox = Hive.box<Comment>('myComments');
 
   _getData() async {
     data = await client.getDataFromApi(
@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _getData();
+
     super.initState();
   }
 
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   void _saveComment(Comment comment) {
     commentsBox.add(comment);
+    print(commentsBox.length);
   }
 
   @override

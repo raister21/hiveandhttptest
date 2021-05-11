@@ -1,16 +1,15 @@
-import 'package:datatest/model/commentAdapter.dart';
+import 'package:datatest/model/comment.dart';
 import 'package:datatest/presentation/home.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-Future<void> main() async {
-  final filesDir = await path_provider.getApplicationDocumentsDirectory();
-
-  Hive.init(filesDir.path);
+void main() async {
+  Hive.initFlutter();
   Hive.registerAdapter(CommentAdapter());
+  await Hive.openBox<Comment>('myComments');
   runApp(MyApp());
-  final myCommentsBox = Hive.box('myComments');
 }
 
 class MyApp extends StatelessWidget {

@@ -1,3 +1,4 @@
+import 'package:datatest/model/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -7,18 +8,21 @@ class SavedItemPage extends StatefulWidget {
 }
 
 class _SavedItemPageState extends State<SavedItemPage> {
-  final commentsBox = Hive.box('myComments');
+  final commentsBox = Hive.box<Comment>('myComments');
 
   @override
   Widget build(BuildContext context) {
-    print(commentsBox.getAt(0));
     return Column(
       children: [
         Expanded(flex: 1, child: Icon(Icons.arrow_back)),
         Expanded(
           flex: 7,
-          child: Column(
-            children: [],
+          child: Container(
+            child: ListView.builder(
+                itemCount: commentsBox.length,
+                itemBuilder: (context, index) {
+                  return Text(commentsBox.getAt(index).body);
+                }),
           ),
         ),
       ],
